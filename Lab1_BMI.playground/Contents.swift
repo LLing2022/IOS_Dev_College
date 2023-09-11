@@ -23,7 +23,7 @@ let lastName : Array<String> = ["Carvalho", "Zukemberg", "Smith", "Olivier","Fra
 let height : Array<Int> = [174, 178, 166, 182, 177] // in centimeters
 let weight : Array<Double> = [82.5, 78.2, 120.0, 71.2, 92.9] // in kg
 
-for pt in 0...(firstName.count - 1){
+for pt in 0...(firstName.count-1){
     //get basic info
     let fullName = "\(firstName[pt]) \(lastName[pt])"
     let Height = Double(height[pt])/100
