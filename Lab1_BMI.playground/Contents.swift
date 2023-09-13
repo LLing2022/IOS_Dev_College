@@ -25,10 +25,13 @@ let weight : Array<Double> = [82.5, 78.2, 120.0, 71.2, 92.9] // in kg
 
 for pt in 0...(firstName.count-1){
     //get basic info
-    let fullName = "\(firstName[pt]) \(lastName[pt])"
-    let Height = Double(height[pt])/100
-    let Weight = (weight[pt])
-    let bmi = Weight/(Height*Height)
+    var fullName = "\(firstName[pt]) \(lastName[pt])"
+    var Height = Double(height[pt])/100
+    var Weight = (weight[pt])
+    var bmi = Weight/(Height*Height)
+    // if need to use the data in next validation, round it before use it
+    bmi = round( bmi * 10 )/10
+    
     var classcifacation = "";
     //check BMI classifacation
     if bmi < 18.5{
@@ -44,8 +47,9 @@ for pt in 0...(firstName.count-1){
     print("Patient number \(pt + 1) : \(fullName)")
     print(" - Height : \(height[pt]) cm")
     print(" - Weight : \(weight[pt]) kg")
-    print(" - BMI : \(String(format: "%.1f", bmi))")
+    print(" - BMI : \(bmi)")
     print(" - Classification : \(classcifacation)")
+    print("-----------------------------------------")
     
     
 }
