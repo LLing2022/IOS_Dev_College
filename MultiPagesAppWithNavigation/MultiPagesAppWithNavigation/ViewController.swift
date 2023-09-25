@@ -1,6 +1,6 @@
 //
 //  ViewController.swift
-//  BMIApp
+//  MultiPagesAppWithNavigation
 //
 //  Created by Lingfang He on 2023-09-25.
 //
