@@ -54,7 +54,7 @@ class ViewController: UIViewController {
                 Toast.ok(view: self, title: "Ooops!", message: "Please enter an age between 1 to 20.")
             }
         }else{
-            Toast.ok(view: self, title: "Ooops!", message: "Enter a valid Number!")
+            Toast.ok(view: self, title: "Ooops!", message: "Enter a valid Number!") 
         }
         
         
