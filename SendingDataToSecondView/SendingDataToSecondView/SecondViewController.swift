@@ -1,26 +1,29 @@
 //
-//  ThirdViewController.swift
-//  MultiPagesAppWithNavigation
+//  SecondViewController.swift
+//  SendingDataToSecondView
 //
-//  Created by Lingfang He on 2023-09-25.
+//  Created by Lingfang He on 2023-09-27.
 //
 
 import UIKit
 
-class ThirdViewController: UIViewController {
+class SecondViewController: UIViewController {
+    
+    var receivedMessage : String? // optional string == nil
 
+    @IBOutlet weak var lblMessage: UILabel!
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        // the reason why the "receivedMessage" is without !, because the .text is String? (optional) we send optional to optional
+        lblMessage.text = receivedMessage
     }
     
 
-    @IBAction func btnBackToSecondViewTouchUpInside(_ sender: Any) {
-        //self.dismiss(animated: true)
-        navigationController!.popViewController(animated: true)
-        
-    }
     /*
     // MARK: - Navigation
 
