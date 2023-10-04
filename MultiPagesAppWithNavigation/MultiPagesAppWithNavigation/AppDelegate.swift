@@ -1,13 +1,13 @@
 //
 //  AppDelegate.swift
-//  Bmi
+//  MultiPagesAppWithNavigation
 //
-//  Created by Lingfang He on 2023-09-20.
+//  Created by Lingfang He on 2023-09-25.
 //
 
 import UIKit
 
-@main 
+@main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
 

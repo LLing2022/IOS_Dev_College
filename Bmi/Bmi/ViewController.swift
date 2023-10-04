@@ -21,15 +21,13 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view.
         lblResult.isHidden = true
     }
+    
     @IBAction func txtHeightEditingChanged(_ sender: Any) {
         lblResult.isHidden = true
     }
-    
     @IBAction func txtWeightEditingChanged(_ sender: Any) {
         lblResult.isHidden = true
     }
-    
-    
     @IBAction func btnCalculateTouchUPInside(_ sender: Any) {
         /*
          1.get the value from txtbox
@@ -39,50 +37,55 @@ class ViewController: UIViewController {
          5.show the result using lblResult
          ? means can be null
          */
-        if let height = Double(txtHeight.text!){
-            if(height >= 80 && height <= 250){
-                if let weight = Double(txtWeight.text!){
-                    if(weight >= 30 && weight <= 300){
-                        
-                        var Height = height/100
-                        var bmi = weight/(Height * Height)
-                        bmi = round( bmi * 10 )/10
-                        var classcification = "";
-
-                        if bmi < 18.5{
-                            classcification = "Underweight"
-                            lblResult.text = " BMI Classcification = \(classcification) "
-                            lblResult.backgroundColor = UIColor.blue
-                            lblResult.isHidden = false
-                        }else if bmi <= 24.9{
-                            classcification = "Normal weight"
-                            lblResult.text = " BMI Classcification = \(classcification) "
-                            lblResult.backgroundColor = UIColor.green
-                            lblResult.isHidden = false
-                        }else if  bmi <= 29.9{
-                            classcification = "Overweight"
-                            lblResult.text = " BMI Classcification = \(classcification) "
-                            lblResult.backgroundColor = UIColor.yellow
-                            lblResult.isHidden = false
-                        }else if bmi <= 100{
-                            classcification = "Obesity"
-                            lblResult.text = " BMI Classcification = \(classcification) "
-                            lblResult.backgroundColor = UIColor.orange
-                            lblResult.isHidden = false
-                        }
-                        
-                    }else{
-                        Toast.ok(view: self, title: "Bad Info!!!", message: "Please enter a valid weight!")
-                    }
+        // gard let notation
+        
+        guard let height = Double(txtHeight.text!) else {
+            Toast.ok(view: self, title: "Bad Info!!!", message: "Please enter a Number!")
+            return
+        }
+        guard let weight = Double(txtWeight.text!) else {
+            Toast.ok(view: self, title: "Bad Info!!!", message: "Please enter a Number!")
+            return
+        }
+        if(height >= 80 && height <= 250){
+            if(weight >= 30 && weight <= 300){
+                let Height = height/100
+                var bmi = weight/(Height * Height)
+                bmi = round( bmi * 10 )/10
+                
+                switch(bmi){
+                case 0..<18.5:
+                lblResult.text = " BMI Classcification = Underweight "
+                lblResult.backgroundColor = UIColor.blue
+                    lblResult.isHidden = false
+                break;
+                case 18.5..<25.0:
+                lblResult.text = " BMI Classcification = Normal weight "
+                lblResult.backgroundColor = UIColor.green
+                    lblResult.isHidden = false
+                break;
+                case 25.0..<30.0:
+                lblResult.text = " BMI Classcification = Overweight "
+                lblResult.backgroundColor = UIColor.yellow
+                    lblResult.isHidden = false
+                break;
+                case 25.0...100.0:
+                lblResult.text = " BMI Classcification = Obesity "
+                lblResult.backgroundColor = UIColor.orange
+                    lblResult.isHidden = false
+                break;
+                    
+                default:
+                Toast.ok(view: self, title: "Ooooops!!!", message: "Out of range!")
+                    
                 }
                 
+                }else{
+                    Toast.ok(view: self, title: "Bad Info!!!", message: "Please enter a valid weight!")
+                }
             }else{
                 Toast.ok(view: self, title: "Bad Info!!!", message: "Please enter a valid height!")
             }
-        }
-        
         
     }
-    
 }
-
