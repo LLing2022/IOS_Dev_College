@@ -34,7 +34,7 @@ class ViewController: UIViewController {
     }
     
     @IBAction func btnCheckitOutTouchUpInside(_ sender: Any) {
-        //Just for test
+        //Just for test.
         //print(" Tapped! ")
         /*
          1.get the value from txtAge
