@@ -28,6 +28,9 @@ class ViewController: UIViewController {
         
     }
     
+    
+    
+    
     // should i stay and should i go :)
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
         if (identifier == Segue.toSecondViewController) {
@@ -39,11 +42,25 @@ class ViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-        if segue.identifier == Segue.toSecondViewController{
+        if segue.identifier == Segue.toSecondViewController || segue.identifier == Segue.toSecondViewControllerProgrammatically{
             let secondViewController = segue.destination as! SecondViewController
             secondViewController.receivedMessage = txtMessage.text
             
         }
+    }
+    /*
+     Segue flow:
+     button -> ViewController   > shouldPerfromSegue(true) > perpare for Segue
+     VC -> VC       > ------------ > perpare for Segue
+     
+     */
+    @IBAction func btnSendMessageTouchUpInside(_ sender: Any) {
+        if txtMessage.text!.isEmpty{
+            return
+        }
+        performSegue(withIdentifier: Segue.toSecondViewControllerProgrammatically, sender: self)
+        
+        
     }
     
 }
