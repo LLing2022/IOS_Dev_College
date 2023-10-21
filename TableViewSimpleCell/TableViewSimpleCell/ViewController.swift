@@ -6,11 +6,15 @@
 //
 
 import UIKit
-
-class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
-    
-
+// the first after : is inherantance, after that are all protocols
+class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, SecondViewControllerDelegate {
+ 
+    //default is public
+   
+    private   var selectedRow : Int?
     @IBOutlet weak var tableView: UITableView!
+    
+    
     
     override func viewDidLoad()
     {
@@ -22,7 +26,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
    
     func initialize()
     {
-        TaskProvider.generateMockData()
+        //TaskProvider.generateMockData() // 100 tasks
 //        for task in TaskProvider.all{
 //            print(task)
 //        }
@@ -58,6 +62,31 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // index of base from 0
         print("\(indexPath.row + 1) selected ! \(TaskProvider.all[indexPath.row])")
+        
+        selectedRow = indexPath.row
+        
+        //When the user click a check box, we trigger a Segue(qiehuan)
+        performSegue(withIdentifier: Segue.toSecondViewController, sender: self)
+        
+        }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?){
+        if segue.identifier == Segue.toSecondViewController{//update/ delete mode
+            
+            (segue.destination as! SecondViewController).selectedRow = selectedRow
+//            (segue.destination as! SecondViewController).delegate = self
+        }
+        // all operation need refresh
+        (segue.destination as! SecondViewController).delegate = self
     }
+    
+    // this is from SecondViewControllerDelegate
+    func refreshTable() {
+        
+        tableView.reloadData()
+        
+    }
+    
+    
 }
 
